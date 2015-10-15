@@ -10,5 +10,5 @@ This vagrant project will create an environment to help with JON demonstrations
 ## How to set it up
 * Install Vagrant
 * Install VirtualBox
-* clone this project and read the ReadME file under installs folder
-* run command "vagrant up" (run command "vagrant destroy" before re-installing the image)
+* clone this github project and download the required artifacts as per installs/ReadMe.txt file
+* run command "vagrant up" under the root folder of this project (run command "vagrant destroy" before re-installing the image)
