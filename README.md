@@ -2,10 +2,10 @@
 This vagrant project will create an environment to help with JON demonstrations
 
 ## What is in the image ?
-Fedora 22 Desktop
-Postgres 9.3
-EAP
-JON
+Fedora 22 Desktop\n
+Postgres 9.3\n
+EAP\n
+JON\n
 
 ## How to set it up
 Install Vagrant
