@@ -7,6 +7,8 @@ TOOLS=tools
 EAP=jboss-eap-6.4.0
 JON=jon-server-3.3.0.GA
 EAP_JON_PLUGINS=jon-plugin-pack-eap-3.3.0.GA
+JON_PATCH_UPDATE=jon-server-3.3-update-04
+JON_PATCH_UPDATE_EXPLODED=jon-server-3.3.0.GA-update-04
 
 
 echo "=== creating demo user with demo password and sudo access ... "
@@ -50,6 +52,10 @@ cd ${DEMO_HOME}/${TOOLS}
 unzip -q ${EAP}.zip
 unzip -q ${JON}.zip
 unzip -q ${EAP_JON_PLUGINS}.zip
+unzip -q ${JON_PATCH_UPDATE}.zip
+
+
+cd ${DEMO_HOME}/${TOOLS}
 
 echo "=== configuring JON and copying EAP JON plugins..."
 /bin/cp --force ${VAGRANT}/provisioning/support/rhq-server.properties ${JON}/bin/rhq-server.properties
@@ -62,4 +68,11 @@ ${DEMO_HOME}/${TOOLS}/${JON}/bin/rhqctl install
 /bin/cp --force ${EAP_JON_PLUGINS}/* ${JON}/plugins/
 sudo chown -R demo:users ${DEMO_HOME}/${TOOLS}/*
 
-echo "Successful! Your environment for JON demo is ready. start EAP and JON to show these awesome products !!!"
+echo “=== applying JON patch update 04…”
+cd ${DEMO_HOME}/${TOOLS}/${JON_PATCH_UPDATE_EXPLODED}
+./apply-updates.sh ${DEMO_HOME}/${TOOLS}/${JON}
+
+sudo chown -R demo:users ${DEMO_HOME}/${TOOLS}/*
+
+
+echo "Successful! Your environment for JON demo is ready. start EAP and JON to show these awesome products !!!”

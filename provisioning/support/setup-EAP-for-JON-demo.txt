@@ -1,0 +1,17 @@
+set up EAP for JON demo
+-----------------------
+
+
+cd ~/toolsjboss-eap-6.4/bin
+./add-user admin admin1234!
+
+
+cd ~/toolsjboss-eap-6.4
+cp -R standalone node1
+cp -R standalone node2
+
+./standalone.sh -c standalone-ha.xml -Djboss.node.name=node1 -Djboss.socket.binding.port-offset=100
+./standalone.sh -c standalone-ha.xml -Djboss.node.name=node1 -Djboss.socket.binding.port-offset=200
+
+./standalone.sh -Djboss.node.name=node1 -Djboss.server.base.dir=/home/demo/tools/jboss-eap-6.4/node1 -c standalone-full-ha.xml -Djboss.socket.binding.port-offset=100
+./standalone.sh -Djboss.node.name=node2 -Djboss.server.base.dir=/home/demo/tools/jboss-eap-6.4/node2 -c standalone-full-ha.xml -Djboss.socket.binding.port-offset=200
