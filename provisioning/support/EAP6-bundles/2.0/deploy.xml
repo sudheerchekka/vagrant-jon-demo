@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<project name="example.com-website" default="main" 
+         xmlns:rhq="antlib:org.rhq.bundle">    
+
+   <rhq:bundle name="HelloWorld"  version="2.0" description="HelloWorld Bundle for EA6">
+        <rhq:input-property
+            name="myapp.runtime.name"
+            required="true"
+            defaultValue="jboss-helloworld.war"/>
+
+        <rhq:deployment-unit name="application" compliance="filesAndDirectories">
+            <rhq:archive name="jboss-helloworld-v2.war">
+		<rhq:handover action="deployment">
+		     <rhq:handover-param name="runtimeName" value="${myapp.runtime.name}"/>
+		</rhq:handover>
+            </rhq:archive>
+        </rhq:deployment-unit>
+    </rhq:bundle>
+
+    <target name="main"/>
+    
+</project>
